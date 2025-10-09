@@ -1,0 +1,67 @@
+body {
+    background-color: rgb(27, 34, 49);
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+h1 {
+    color: rgb(201, 201, 201);
+}
+
+.section {
+    margin: 3rem;
+}
+
+.calculator {
+    width: 20rem;
+    border: 2px lightgray solid;
+    border-radius: 1rem;
+    margin-top: 4rem;
+}
+
+.screen {
+    background-color: rgb(75, 90, 123);
+    border-bottom: 2px lightgray solid;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: 1.5rem 2.7rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.entries {
+    padding: 1rem 2rem 3rem 2rem;
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 2rem;
+    gap: 1rem;
+}
+
+.last-row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.button {
+    padding: 1rem;
+    width: 2rem;
+    text-align: center;
+    border: 1px lightgray solid;
+    border-radius: 1rem;
+    background-color: rgb(41, 48, 62);
+}
+
+.button:hover {
+    background-color: rgb(93, 105, 129);
+    cursor: pointer;
+}
+
+.signature {
+    padding-top: 6rem;
+    color: rgba(255, 255, 255, 0.334);
+}
