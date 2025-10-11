@@ -9,6 +9,20 @@ h1 {
     color: rgb(201, 201, 201);
 }
 
+button {
+    padding: 1rem;
+    text-align: center;
+    border: 1px lightgray solid;
+    border-radius: .5rem;
+    background-color: rgb(58, 66, 82);
+    color: white;
+}
+
+button:active {
+    background-color: rgb(93, 105, 129);
+    cursor: pointer;
+}
+
 .section {
     margin: 3rem;
 }
@@ -37,6 +51,7 @@ h1 {
 .row {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     padding-top: 2rem;
     gap: 1rem;
 }
@@ -45,20 +60,6 @@ h1 {
     display: flex;
     justify-content: space-between;
     padding-top: 2rem;
-}
-
-.button {
-    padding: 1rem;
-    width: 2rem;
-    text-align: center;
-    border: 1px lightgray solid;
-    border-radius: 1rem;
-    background-color: rgb(41, 48, 62);
-}
-
-.button:hover {
-    background-color: rgb(93, 105, 129);
-    cursor: pointer;
 }
 
 .signature {
