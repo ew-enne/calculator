@@ -35,7 +35,8 @@ function operate(a, b, operator) {
     }
 }
 
-console.log(operate(3, 0, 'divide'));
+// console.log(operate(3, 0, 'divide'));
+
 
 
 // transform clicked buttons to usable values
@@ -80,29 +81,38 @@ function transformEntry(entry) {
     };
 }
 
-
-
-let clickedButtonId = '';
-let digits = [];
-
-
-function readEntry() {
+// the readEntry function calls a callback each time input changes
+function readEntry(onNumberChange) {
+    let digits = [];
     let buttons = document.querySelectorAll("button");
+
     buttons.forEach((button) => {
-        button.addEventListener("click", function(event) {
-            clickedButtonId = event.target.id;
-            // console.log(clickedButtonId);
-            let digit = transformEntry(clickedButtonId);
-            console.log(digit);
+        button.addEventListener("click", event => {
+            let buttonId = event.target.id;
+
+            //convert id to digit usable value
+            let digit = transformEntry(buttonId);
+
+            // clear button resets everything
+            if (digit === 'clear') {
+                digits = [];
+                onNumberChange('');
+                return;
+            }
+
+            // insert selected button value into digits array
             digits.push(digit);
-            console.log(digits);
+
+            // build number from array values and call callback
             let number = Number(digits.join(''));
-            console.log(number);
+            onNumberChange(number);
         });
     });
 }
 
+// Update screen every time number changes
+readEntry((num) => {
+    document.querySelector(".screen").textContent = num;
+    console.log("Current number: ", num);
+});
 
-
-
-readEntry();
