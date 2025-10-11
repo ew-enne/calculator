@@ -1,3 +1,5 @@
+
+// Math functions --------
 function add(a, b) {
     return a + b;
 }
@@ -17,36 +19,10 @@ function divide(a, b) {
         return "division by zéro !!!"
     }
 }
-
-// let number1 = 0;
-// let operator = '';
-// let number2 = 0;
-
-// let entry = [];
+// Math functions --------
 
 
-let clickedButtonId = '';
-let digits = [];
-
-
-function readEntry() {
-    let buttons = document.querySelectorAll("button");
-    buttons.forEach((button) => {
-        button.addEventListener("click", function(event) {
-            clickedButtonId = event.target.id;
-            // console.log(clickedButtonId);
-            let digit = transformEntry(clickedButtonId);
-            console.log(digit);
-            digits.push(digit);
-            console.log(digits);
-            let number = Number(digits.join(''));
-            console.log(number);
-        });
-    });
-}
-
-
-// transform clicked buttons to values
+// transform clicked buttons to usable values
 function transformEntry(entry) {
     switch (entry) {
         case "btn-1":
@@ -71,12 +47,45 @@ function transformEntry(entry) {
             return 0;
         case "btn-dot":
             return '.';
+        case "btn-divide":
+            return 'divide';
+        case "btn-multiply":
+            return 'multiply';
+        case "btn-subtract":
+            return 'subtract';
+        case "btn-add":
+            return 'add';
+        case "btn-back":
+            return 'back';
+        case "btn-clear":
+            return 'clear';
+        case "btn-equal":
+            return 'equal';
     };
 }
 
-readEntry();
 
-// console.log(add(6, 5));
-// console.log(subtract(6, 5.2358));
-// console.log(multiply(6, 5));
-// console.log(divide(6, -3));
+let clickedButtonId = '';
+let digits = [];
+
+
+function readEntry() {
+    let buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", function(event) {
+            clickedButtonId = event.target.id;
+            // console.log(clickedButtonId);
+            let digit = transformEntry(clickedButtonId);
+            console.log(digit);
+            digits.push(digit);
+            console.log(digits);
+            let number = Number(digits.join(''));
+            console.log(number);
+        });
+    });
+}
+
+
+
+
+readEntry();
