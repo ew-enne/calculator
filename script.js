@@ -1,3 +1,6 @@
+// Global variables
+let globalNumber;
+
 
 // Math functions --------
 function add(a, b) {
@@ -16,7 +19,7 @@ function divide(a, b) {
     if (b !== 0) {
         return a / b;
     } else {
-        return "division by zéro !!!"
+        console.log("😝 Division by zéro 💥 !!! Chose a different number.");
     }
 }
 // Math functions --------
@@ -43,12 +46,14 @@ function transformEntry(id) {
 
 // Callback function for the readEntry function
 function handleNumberChange(entry) {
+    globalNumber = entry;
+    console.log("Global number = ", globalNumber);
     document.querySelector(".screen").textContent = entry;
     console.log("Current entry: ", entry);
 }
 
 
-// The readEntry function calls the  callback function when input changes
+// The readEntry function sets up event listeners on the buttons and calls the callback function when input changes
 function readEntry(onNumberChange) {
     let digits = [];
     let buttons = document.querySelectorAll("button");
@@ -57,7 +62,7 @@ function readEntry(onNumberChange) {
         button.addEventListener("click", event => {
             let buttonId = event.target.id;
 
-            //convert id to digit usable value
+            //convert id to digit usable value using the transforEntry function
             let digit = transformEntry(buttonId);
 
             // clear button resets everything
@@ -77,6 +82,23 @@ function readEntry(onNumberChange) {
     });
 }
 
-// Update screen every time number changes
-readEntry(handleNumberChange);
 
+
+
+
+// Variables for calculator operation
+let number1;
+let number2;
+let operator = '';
+
+let entryArr = [];
+
+number1 = 3;
+number2 = 1;
+operator = 'divide';
+
+let result = operate(number1, number2, operator);
+// console.log(result);
+
+
+readEntry(handleNumberChange);
