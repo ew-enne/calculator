@@ -36,13 +36,19 @@ function operate(a, b, operator) {
 }
 
 
-// transform clicked buttons to usable values (shorter version)
+// Transform clicked buttons to usable values (shorter version)
 function transformEntry(id) {
     return id.replace('btn-', '');
 }
 
+// Callback function for the readEntry function
+function handleNumberChange(entry) {
+    document.querySelector(".screen").textContent = entry;
+    console.log("Current entry: ", entry);
+}
 
-// the readEntry function calls a callback each time input changes
+
+// The readEntry function calls the  callback function when input changes
 function readEntry(onNumberChange) {
     let digits = [];
     let buttons = document.querySelectorAll("button");
@@ -57,7 +63,7 @@ function readEntry(onNumberChange) {
             // clear button resets everything
             if (digit === 'clear') {
                 digits = [];
-                onNumberChange('');
+                onNumberChange('0.00');
                 return;
             }
 
@@ -72,8 +78,5 @@ function readEntry(onNumberChange) {
 }
 
 // Update screen every time number changes
-readEntry((num) => {
-    document.querySelector(".screen").textContent = num;
-    console.log("Current number: ", num);
-});
+readEntry(handleNumberChange);
 
