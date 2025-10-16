@@ -3,6 +3,7 @@ let globalNumber;
 let operator;
 let entryArray = [];
 let operatorArray = [];
+let firstNumber;
 
 
 // Math functions --------
@@ -83,7 +84,29 @@ function readEntry(onNumberChange) {
                 digits = [];
                 onNumberChange('0.00');
                 return;
-            } 
+            }
+
+            // populate operatorArray when operators are pressed
+            if (digit === 'add') {
+                operatorArray.push(digit);
+                console.log("Operator Array : ", operatorArray);
+                return;
+            }
+
+            if (digit === 'subtract') {
+                operatorArray.push(digit);
+                console.log("Operator Array : ", operatorArray);
+            }
+
+            if (digit === 'multiply') {
+                operatorArray.push(digit);
+                console.log("Operator Array : ", operatorArray);
+            }
+
+            if (digit === 'divide') {
+                operatorArray.push(digit);
+                console.log("Operator Array : ", operatorArray);
+            }
 
             // insert selected button value into digits array
 
