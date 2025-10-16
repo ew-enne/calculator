@@ -1,5 +1,8 @@
 // Global variables
 let globalNumber;
+let operator;
+let entryArray = [];
+let operatorArray = [];
 
 
 // Math functions --------
@@ -19,7 +22,7 @@ function divide(a, b) {
     if (b !== 0) {
         return a / b;
     } else {
-        console.log("😝 Division by zéro 💥 !!! Chose a different number.");
+        console.log("😝 Division by zéro 💥 !!! Please chose a different number.");
     }
 }
 // Math functions --------
@@ -41,15 +44,25 @@ function operate(a, b, operator) {
 
 // Transform clicked buttons to usable values (shorter version)
 function transformEntry(id) {
-    return id.replace('btn-', '');
+    if (id !== 'btn-dot') {
+        return id.replace('btn-', '');
+    } else {
+        return '.';
+    }
+    
 }
+
 
 // Callback function for the readEntry function
 function handleNumberChange(entry) {
-    globalNumber = entry;
-    console.log("Global number = ", globalNumber);
-    document.querySelector(".screen").textContent = entry;
-    console.log("Current entry: ", entry);
+    // Check if entry is a number
+    if (Number(entry) !== Number(entry)) {
+        console.log("Entry is NOT a number");
+    } else {
+        console.log("Entry is a number");
+        globalNumber = document.querySelector(".screen").textContent = entry;
+    }
+    
 }
 
 
@@ -70,35 +83,28 @@ function readEntry(onNumberChange) {
                 digits = [];
                 onNumberChange('0.00');
                 return;
-            }
+            } 
 
             // insert selected button value into digits array
-            digits.push(digit);
 
+            // make sure that only one dot can be entered
+            if (digit === '.' && !entryArray.includes('.')) {
+                digits.push(digit);
+                entryArray = [...digits]; // creates a copy of digits array (not a reference to it)
+            } else if (digit === '.' && entryArray.includes('.')) {
+                return;
+            } else {
+            digits.push(digit);
+            entryArray = [...digits];
+}
             // build number from array values and call callback
-            let number = Number(digits.join(''));
+            // let number = Number(digits.join(''));
+            let number = digits.join('');
             onNumberChange(number);
         });
     });
 }
 
-
-
-
-
-// Variables for calculator operation
-let number1;
-let number2;
-let operator = '';
-
-let entryArr = [];
-
-number1 = 3;
-number2 = 1;
-operator = 'divide';
-
-let result = operate(number1, number2, operator);
-// console.log(result);
 
 
 readEntry(handleNumberChange);
