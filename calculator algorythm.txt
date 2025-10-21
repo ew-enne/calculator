@@ -1,0 +1,39 @@
+Calculator Algorythm :
+
+(0) if input 'clear'
+	
+	-> reset everything
+
+
+(1) enter numbers :
+
+	-> populate entryArray
+
+(2) as soon as operator (+ - * /) :
+
+	-> populate operatorArray
+	-> define firstNumber
+	-> empty entryArray
+
+(3) enter numbers :
+
+	-> define operator
+	-> populate entryArray
+	-> emtpy operatorArray
+	
+(4) as soon as operator (+ - * / =) :
+
+	-> populate operatorArray
+	-> define secondNumber
+	-> do the calculation using operate function
+	-> show result on screen
+	-> define operator
+	
+	
+	
+(3') enter numbers :
+	
+	-> if secondNumber !== undefinded -> firstNumber = secondNumber
+	-> ...
+	
+(4) ...
