@@ -2,16 +2,14 @@
 
 let firstEntry = false; // to check if a number has been already entered or not
 let operatorEntry = false; //to check if an operator has been alread entered or not
-let entryArray = [];
+let entryArray = ['0.00'];
 let operatorArray = [];
 let operator;
-// let firstOperator;
-// let secondOperator;
-let entry;
+let firstOperator;
+let secondOperator;
+let tempNumber;
 let firstNumber;
 let secondNumber;
-let numberArray = [];
-let result;
 
 
 // Math functions --------
@@ -31,7 +29,7 @@ function divide(a, b) {
     if (b !== 0) {
         return a / b;
     } else {
-        alert("😝 Division by zéro 💥 !!! Please chose a different number.");
+        console.log("😝 Division by zéro 💥 !!! Please chose a different number.");
     }
 }
 // Math functions --------
@@ -62,9 +60,19 @@ function transformEntry(id) {
 }
 
 
-// Callback function for the readEntry function (changes the screen)
+// Callback function for the readEntry function
 function populateDisplay(entry) {
-    tempNumber = document.querySelector(".screen").textContent = entry;    
+    tempNumber = document.querySelector(".screen").textContent = entry;
+
+    // Check if entry is not / is a number
+    // if (Number(entry) !== Number(entry)) {
+    //     console.log("Entry is NOT a number");
+
+    // } else {
+    //     console.log("Entry is a number");
+    //     tempNumber = document.querySelector(".screen").textContent = entry;
+    // }
+    
 }
 
 
@@ -95,27 +103,34 @@ function readEntry(onNumberChange) {
             if (firstEntry === false && 
                 (input === 'add' || input === 'subtract' || input === 'multiply' || input === 'divide' || input === 'equal')) {
                     return;
-
             } else if (firstEntry !== false &&
                 (input === 'add' || input === 'subtract' || input === 'multiply' || input === 'divide')) {
-                    let entry = entryArray.join('');
-                    numberArray.push(Number(entry));
-
-                    if (numberArray.length <= 1) {
-                        result = Number(entry);
-                    }
                     operatorArray.push(input);
+                    console.log("Operator Array : ", operatorArray);
                     operatorEntry = true;
+                    console.log("Operator entry : ", operatorEntry);
                     inputs = [];
-                    operator = operatorArray[operatorArray.length - 2];
-
-                    if (numberArray.length > 1) {
-                        result = operate(result, numberArray[numberArray.length - 1], operator);
+                    // operator = operatorArray.pop();
+                    firstOperator = operatorArray.pop();
+                    console.log("operator is : ", operator);
+                    operatorArray = [];
+                    console.log("operatorArray : ", operatorArray);
+                    console.log("First first number : ", firstNumber);
+                    if (firstNumber === undefined) {
+                        firstNumber = tempNumber;                        
+                    } else if (firstNumber !== undefined) {
+                        secondNumber = tempNumber;
+                    }
+                    console.log("First Numberrr : ", firstNumber);
+                    console.log("Second Numberrr : ", secondNumber);
+                    if (secondNumber !== undefined) {
+                        result = operate(Number(firstNumber), Number(secondNumber), firstOperator);
                         let roundResult = Math.round(result * 100) / 100;
+                        console.log("result : ", result);
+                        console.log("RESULT : ", roundResult);
                         onNumberChange(roundResult);
                     }    
                     return;
-
             } else if (firstEntry !== false && input === 'equal') {
                 return;
             }
@@ -128,13 +143,10 @@ function readEntry(onNumberChange) {
                 if (input === '.' && !entryArray.includes('.')) {
                     inputs.push(input);
                     entryArray = [...inputs]; // creates a copy of inputs array (not a reference to it)
-
                 } else if (input === '.' && entryArray.includes('.')) {
                     return;
-
                 } else if (input !== 'back') {
                     inputs.push(input);
-
                 } else if (input === 'back') {     
                 // undo last entry (remove last element in the entryArray)            
                     inputs.splice(-1, 1);
@@ -144,8 +156,11 @@ function readEntry(onNumberChange) {
                 // build number from array values and call callback
                 let number = inputs.join('');
                 entryArray = [...inputs];
-                onNumberChange(number);                
+                console.log("Entry Array is : ", entryArray);
+                onNumberChange(number);
                 firstEntry = true; // first number has been entered
+                // firstNumber = tempNumber;
+                // console.log("First Number : ", firstNumber);
                 
     })})
 }

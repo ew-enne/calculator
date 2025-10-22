@@ -1,6 +1,17 @@
 Calculator Algorythm :
 
-(0) if input 'clear'
+
+default vaules :
+
+	- firstEntry = false
+	- entryArray = ['0']
+	- operatorArray = []
+	- operator
+	- firstNumber
+	- secondNumber
+
+
+(0) IF input 'clear'
 	
 	-> reset everything
 
@@ -9,8 +20,9 @@ Calculator Algorythm :
 
 	-> populate entryArray
 
-(2) as soon as operator (+ - * /) :
+(2) as soon as operator is (+ - * /) :
 
+	-> set firstEntry = true
 	-> populate operatorArray
 	-> define firstNumber
 	-> empty entryArray
@@ -19,9 +31,9 @@ Calculator Algorythm :
 
 	-> define operator
 	-> populate entryArray
-	-> emtpy operatorArray
+	-> empty operatorArray
 	
-(4) as soon as operator (+ - * / =) :
+(4) as soon as operator is (+ - * / =) :
 
 	-> populate operatorArray
 	-> define secondNumber
